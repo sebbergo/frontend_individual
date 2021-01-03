@@ -7,7 +7,6 @@ function Starwars() {
     speciesName: "",
     starshipName: "",
     vehicleName: ""
-
   }
 
   const [dataFromServer, setDataFromServer] = useState(obj);

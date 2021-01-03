@@ -22,6 +22,7 @@ function apiFacade() {
 
     return loggedIn;
   };
+
   const logout = () => {
     localStorage.removeItem("jwtToken");
   };
@@ -31,6 +32,7 @@ function apiFacade() {
       username: user,
       password: password,
     });
+
     return fetch(URL + "/api/login", options)
       .then(handleHttpErrors)
       .then((res) => {
@@ -60,8 +62,27 @@ function apiFacade() {
   const fetchStarwars = () => {
     const options = makeOptions("GET");
 
-    return fetch(URL + "/api/info/parrallel/", options).then(handleHttpErrors);
+    return fetch(URL + "/api/info/sw/", options).then(handleHttpErrors);
   };
+
+  const fetchStarwarsPlanets = () => {
+    const options = makeOptions("GET");
+
+    return fetch(URL + "/api/info/planets/", options).then(handleHttpErrors);
+  };
+
+  const fetchJoke = () => {
+    const options = makeOptions("GET");
+
+    return fetch(URL + "/api/info/joke/", options).then(handleHttpErrors);
+  };
+
+  const storeJoke = () => {
+    const options = makeOptions("POST");
+
+    return fetch(URL + "/api/info/storeJoke/", options).then(handleHttpErrors);
+  };
+
   const makeOptions = (method, addToken, body) => {
     var opts = {
       method: method,
@@ -78,6 +99,7 @@ function apiFacade() {
     }
     return opts;
   };
+
   return {
     makeOptions,
     setToken,
@@ -87,7 +109,10 @@ function apiFacade() {
     logout,
     fetchData,
     fetchStarwars,
-    getRole
+    getRole,
+    fetchJoke,
+    storeJoke,
+    fetchStarwarsPlanets,
   };
 }
 
